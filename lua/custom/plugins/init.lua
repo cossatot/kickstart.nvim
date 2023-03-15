@@ -2,4 +2,8 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+	"jeffkreeftmeijer/vim-numbertoggle",
+	"ethanmuller/scratch.vim",
+	"luochen1990/rainbow",
+}

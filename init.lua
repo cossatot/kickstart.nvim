@@ -72,7 +72,7 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
+     
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   { -- LSP Configuration & Plugins
@@ -116,7 +116,8 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+       --vim.cmd.colorscheme 'onedark'
+       vim.cmd.colorscheme 'molokai'
     end,
   },
 
@@ -126,7 +127,8 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        --theme = 'onedark',
+        theme = 'molokai',
         component_separators = '|',
         section_separators = '',
       },
@@ -229,6 +231,43 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+
+-- RS
+vim.o.swapfile = false
+
+vim.cmd([[
+set splitright
+set splitbelow
+
+" stuff for relative/absolute line number switching
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+
+" functions to help parse fixed width files to csv
+command Onespace %s![^ ]\zs \+! !g
+
+command Rmtrail %s/\s\+$//
+
+command Rmlead %s/^\s\+
+
+command FormatJSON %!python -m json.tool
+
+]])
 
 -- [[ Basic Keymaps ]]
 
