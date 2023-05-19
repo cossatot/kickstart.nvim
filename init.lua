@@ -96,6 +96,8 @@ require('lazy').setup({
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
+  'ervandew/supertab',
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   { -- Adds git releated signs to the gutter, as well as utilities for managing changes
@@ -116,8 +118,8 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-       --vim.cmd.colorscheme 'onedark'
-       vim.cmd.colorscheme 'molokai'
+       vim.cmd.colorscheme 'onedark'
+       --vim.cmd.colorscheme 'molokai'
     end,
   },
 
@@ -215,8 +217,9 @@ vim.o.breakindent = true
 vim.o.undofile = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- RS delete
+vim.o.ignorecase = false
+vim.o.smartcase = false
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
@@ -256,6 +259,13 @@ nnoremap <C-n> :call NumberToggle()<cr>
 
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
+
+set colorcolumn=80
+
+augroup julia
+  " autocmd FileType julia cc-=80
+  autocmd FileType julia set colorcolumn=100
+augroup END
 
 
 " functions to help parse fixed width files to csv
