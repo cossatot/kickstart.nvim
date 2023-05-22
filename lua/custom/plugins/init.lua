@@ -8,7 +8,7 @@ return {
     "luochen1990/rainbow",
     "ervandew/supertab",
     "lervag/vimtex",
-    
+
     {"vim-pandoc/vim-pandoc",
     config = function ()
 	    vim.cmd([[
@@ -23,16 +23,18 @@ return {
     {"preservim/vim-pencil",
     config = function()
         vim.cmd([[
-let g:pencil#textwidth = 79
-let g:pencil#conceallevel = 0
+	let g:pencil#textwidth = 79
+	let g:pencil#conceallevel = 0
+	
+	augroup pencil
+	autocmd!
+	autocmd FileType markdown call pencil#init({'wrap': 'hard'})
+	autocmd FileType latex call pencil#init({'wrap': 'hard'})
+	augroup END
+	]])
+    end
+    },
 
-augroup pencil
-autocmd!
-autocmd FileType markdown call pencil#init({'wrap': 'hard'})
-autocmd FileType latex call pencil#init({'wrap': 'hard'})
-augroup END
-]])
-end
-}
+    "github/copilot.vim",
 
 }
